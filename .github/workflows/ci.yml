@@ -26,18 +26,18 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/ai_chatbot/ai_chatbot.csproj') }}
           restore-keys: |
             ${{ runner.os }}-nuget-
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore ai_chatbot/ai_chatbot.csproj
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build ai_chatbot/ai_chatbot.csproj --configuration Release --no-restore
 
       - name: Run tests
-        run: dotnet test --configuration Release --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx"
+        run: dotnet test ai_chatbot/ai_chatbot.csproj --configuration Release --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx"
 
       - name: Upload test results
         if: always()
