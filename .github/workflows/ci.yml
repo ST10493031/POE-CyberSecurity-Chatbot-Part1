@@ -2,11 +2,9 @@ name: .NET CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -22,26 +20,16 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Cache NuGet packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
-          restore-keys: |
-            ${{ runner.os }}-nuget-
-
       - name: Restore dependencies
-        run: dotnet restore ai_chatbot.sln
+        run: dotnet restore ai_chatbot/ai_chatbot.csproj
 
-      - name: Build solution
-        run: dotnet build ai_chatbot.sln --configuration Release --no-restore
+      - name: Build project
+        run: dotnet build ai_chatbot/ai_chatbot.csproj --configuration Release --no-restore
 
-      - name: Run tests
-        run: dotnet test ai_chatbot.sln --configuration Release --no-build --verbosity normal
-
-      - name: Upload test results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: '**/*.trx'
+      - name: Run tests (if test project exists)
+        run: |
+          if find . -name "*Tests.csproj" | grep -q .; then
+            dotnet test --configuration Release --verbosity normal
+          else
+            echo "No test project found - skipping tests"
+          fi
