@@ -1,0 +1,8 @@
+C:\Users\Student\source\repos\ai_chatbot\bin\Debug\ai_chatbot.exe.config
+C:\Users\Student\source\repos\ai_chatbot\bin\Debug\ai_chatbot.exe
+C:\Users\Student\source\repos\ai_chatbot\bin\Debug\ai_chatbot.pdb
+C:\Users\Student\source\repos\ai_chatbot\obj\Debug\ai_chatbot.csproj.AssemblyReference.cache
+C:\Users\Student\source\repos\ai_chatbot\obj\Debug\ai_chatbot.csproj.CoreCompileInputs.cache
+C:\Users\Student\source\repos\ai_chatbot\obj\Debug\ai_chatbot.exe
+C:\Users\Student\source\repos\ai_chatbot\obj\Debug\ai_chatbot.pdb
+C:\Users\Student\source\repos\ai_chatbot\obj\Debug\ai_chatbot.exe.config
