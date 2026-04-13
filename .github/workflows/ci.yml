@@ -31,13 +31,13 @@ jobs:
             ${{ runner.os }}-nuget-
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore ai_chatbot.sln
 
-      - name: Build
-        run: dotnet build --configuration Release --no-restore
+      - name: Build solution
+        run: dotnet build ai_chatbot.sln --configuration Release --no-restore
 
       - name: Run tests
-        run: dotnet test --configuration Release --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx"
+        run: dotnet test ai_chatbot.sln --configuration Release --no-build --verbosity normal
 
       - name: Upload test results
         if: always()
